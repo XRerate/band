@@ -1,0 +1,30 @@
+--- a/bazel/generate_cc.bzl
++++ b/bazel/generate_cc.bzl
+@@ -141,6 +141,7 @@ def generate_cc_impl(ctx):
+         outputs = out_files,
+         executable = ctx.executable._protoc,
+         arguments = arguments,
++        use_default_shell_env = True,
+     )
+
+     return struct(files = depset(out_files))
+
+--- a/third_party/cares/cares.BUILD
++++ b/third_party/cares/cares.BUILD
+@@ -113,6 +113,7 @@ cc_library(
+         "ares__get_hostent.c",
+         "ares__read_line.c",
+         "ares__timeval.c",
++        "ares_android.c",
+         "ares_cancel.c",
+         "ares_create_query.c",
+         "ares_data.c",
+@@ -162,6 +163,7 @@ cc_library(
+     ],
+     hdrs = [
+         "ares.h",
++        "ares_android.h",
+         "ares_build.h",
+         "ares_config.h",
+         "ares_data.h",
+-- 
